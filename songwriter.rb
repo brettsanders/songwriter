@@ -1,37 +1,6 @@
 require 'pry'
-
-# v1
-  # natural notes (7)
-  # all notes (12)
-  # major scale
-  # chords for each scale (basic major minor diminished)
-  # ask for scale
-  # export song structure
-    # intro, verse, chorus, bridge, outro
-    # each will have 1 - 8 chords
-
-# v2
-  # more moods, more chords, maybe ability to generate lyrics (rearrange from words and phrases)
-# v3
-  # much smarter
-
-# v1
-
-DEBUG = false
-KEY  = 'C'
-MOOD = 'happy'
-ALLOW_DIMINISHED = false
-NUM_CHORDS_PER_PART = 6
-
-ROMANS = {
-  1 => 'I',
-  2 => 'ii',
-  3 => 'iii',
-  4 => 'IV',
-  5 => 'V',
-  6 => 'vi',
-  7 => 'vii'
-}
+require_relative 'mood_logic'
+require_relative 'config'
 
 # natural notes (7)
 def natural_notes
@@ -158,8 +127,7 @@ def song_for_key_of(key)
   puts dashes
 end
 
-
-# Use Code
-%w(C A G E D).map{|note| song_for_key_of(note) }
-# song_for_key_of("E")
+# Accept keys as input
+keys = ARGV.empty? ? ['C'] : ARGV
+keys.each {|key| song_for_key_of(key) }
 
